@@ -50,13 +50,14 @@ body {
     top: 0px;
     width: 1px;
     height: 1px;
-    border: 1px solid darkorange;
+    border: none;
     border-radius: 5px;
     background-image: url('mask.png');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
-    display: none;    
+    display: none;
+    overflow: visible;
 }
 
 #face0 {
