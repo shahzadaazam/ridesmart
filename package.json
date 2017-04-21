@@ -20,7 +20,20 @@
     "cordova-plugin-statusbar",
     "cordova-plugin-device",
     "cordova-plugin-splashscreen",
-    "ionic-plugin-keyboard"
+    "ionic-plugin-keyboard",
+    "cordova-plugin-whitelist@1",
+    {
+      "id": "com.ezartech.ezar.snapshot",
+      "locator": "/Users/azamshahani/Desktop/ezar/plugins/com.ezartech.ezar.snapshot"
+    },
+    {
+      "id": "com.ezartech.ezar.videooverlay",
+      "locator": "/Users/azamshahani/Desktop/ezar/plugins/com.ezartech.ezar.videoOverlay"
+    },
+    {
+      "id": "com.ezartech.ezar.facedetector",
+      "locator": "/Users/azamshahani/Desktop/ezar/plugins/com.ezartech.ezar.facedetector"
+    }
   ],
   "cordovaPlatforms": []
 }
