@@ -54,6 +54,7 @@ body {
     border-radius: 5px;
     background-image: url('mask.png');
     background-repeat: no-repeat;
+    background-size: 100% 100%;
     background-attachment: fixed;
     background-position: center;
     display: none;
