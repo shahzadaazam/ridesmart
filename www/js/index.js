@@ -18,7 +18,7 @@ function init() {
 
     ezar.initializeVideoOverlay(
         function() {
-            ezar.getBackCamera().start(
+            ezar.getFrontCamera().start(
                 setTimeout(
                     function() {
                         ezar.watchFaces(onFaces,err);
@@ -93,7 +93,11 @@ function snapshot() {
                 showControls(true);
                 snapping = false;
             },
-            {"saveToPhotoAlbum": true});
+            {"saveToPhotoAlbum": true, 
+             "includeWebView": true,
+             "includeCameraView": true
+            }
+            );
         },10);
 }
 
