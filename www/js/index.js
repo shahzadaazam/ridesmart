@@ -83,20 +83,30 @@ function snapshot() {
 
     showControls(false);
     
+    document.getElementById('revcamera').style.display = "none";
+    document.getElementById('snapshot').style.display = "none";
+    document.getElementById('footerbground').style.display = "none";
+    document.getElementById('headerbground').style.display = "none";
     setTimeout( function() {
         ezar.snapshot(
             function() {
                 showControls(true);
                 snapping = false;
+                document.getElementById('revcamera').style.display = "block";
+                document.getElementById('snapshot').style.display = "block";
+                document.getElementById('footerbground').style.display = "block";
+                document.getElementById('headerbground').style.display = "block";
             },
             function(err) {
                 showControls(true);
                 snapping = false;
             },
+
             {"saveToPhotoAlbum": true, 
              "includeWebView": true,
              "includeCameraView": true
             }
+             
             );
         },10);
 }
