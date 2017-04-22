@@ -16,15 +16,13 @@ body {
 }
 
 
-#camera {
-    height: 72px;
+#snapshot {
     width: 72px;
-    position: fixed;
-    top: 50%;
-    left: 95%;
-    background: url("../img/camera_btn_72_01.png") no-repeat top;
-    transform: translate(-100%, -125%);
-    -webkit-transform: translate(-100%, -125%);
+    height: 72px;
+    bottom: 15px;
+    left: 50%;
+    margin-left: -36px;
+    background: url("../img/camera.png") no-repeat top;
 }
 
 /*    
@@ -34,14 +32,11 @@ body {
 */
 
 #revcamera {
-    height: 72px;
-    width: 72px;
-    position: fixed;
-    top: 50%;
-    left: 95%;
-    background: url("../img/reverse-camera_72_1.png") no-repeat top;
-    transform: translate(-100%, 0%);
-    -webkit-transform: translate(-100%, 0%);
+    width: 50px;
+    height: 50px;
+    bottom: 27px;
+    right: 10px;
+    background: url("../img/reverse_camera_50.png") no-repeat top;
 }
 
 .face {
@@ -74,4 +69,20 @@ body {
 }
 
 #face4 {
+}
+
+.ezar-footer {
+    height: 100px !important;
+    bottom: 0px;
+}
+
+.ezar-button {
+   position: absolute; 
+   z-index: 100;
+   background-color: transparent;
+   border-style: none; 
+}
+
+.hide {
+    display: none;
 }

@@ -10,7 +10,7 @@ function init() {
         faceEls.push(document.getElementById('face'+i));
     }
 
-    var snap = document.getElementById('camera');
+    var snap = document.getElementById('snapshot');
     snap.addEventListener('click',snapshot,false);  
         
     var rev = document.getElementById('revcamera');
