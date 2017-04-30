@@ -1,5 +1,5 @@
 
-var MAX_FACES = 5;
+var MAX_FACES = 1;
 var faceEls = [];
 var enableFaceUpdate = false;
 var snapping = false;
@@ -87,7 +87,7 @@ function snapshot() {
     document.getElementById('snapshot').style.display = "none";
     document.getElementById('footerbground').style.display = "none";
     document.getElementById('headerbground').style.display = "none";
-    setTimeout( function() {
+    //setTimeout( function() {
         ezar.snapshot(
             function() {
                 showControls(true);
@@ -108,7 +108,7 @@ function snapshot() {
             }
              
             );
-        },10);
+        //},10);
 }
 
 function showControls(aBool) {
