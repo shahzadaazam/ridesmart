@@ -5,7 +5,7 @@ var enableFaceUpdate = false;
 var snapping = false;
 document.addEventListener('deviceready',init, false);
         
-function init() {        
+function init() {
     for (var i=0; i < MAX_FACES; i++) {
         faceEls.push(document.getElementById('face'+i));
     }
@@ -15,6 +15,9 @@ function init() {
         
     var rev = document.getElementById('revcamera');
     rev.addEventListener('click',reverseCamera,false);
+
+    var rev = document.getElementById('gallery');
+    rev.addEventListener('click',getGallery,false);
 
     ezar.initializeVideoOverlay(
         function() {
@@ -85,19 +88,25 @@ function snapshot() {
     
     document.getElementById('revcamera').style.display = "none";
     document.getElementById('snapshot').style.display = "none";
+    document.getElementById('gallery').style.display = "none";
     document.getElementById('footerbground').style.display = "none";
     document.getElementById('headerbground').style.display = "none";
+    //setTimeout(function() {document.getElementById('buttons').style.display = "none";},10);
     //setTimeout( function() {
         ezar.snapshot(
             function() {
+                console.log("success...");
                 showControls(true);
                 snapping = false;
+                //document.getElementById('buttons').style.display = "block";
                 document.getElementById('revcamera').style.display = "block";
                 document.getElementById('snapshot').style.display = "block";
+                document.getElementById('gallery').style.display = "block";
                 document.getElementById('footerbground').style.display = "block";
                 document.getElementById('headerbground').style.display = "block";
             },
             function(err) {
+                console.log("failure...");
                 showControls(true);
                 snapping = false;
             },
@@ -108,7 +117,41 @@ function snapshot() {
             }
              
             );
-        //},10);
+      //  },10);
+}
+
+function setOptions(srcType) {
+    var options = {
+        // Some common settings are 20, 50, and 100
+        quality: 50,
+        destinationType: Camera.DestinationType.FILE_URI,
+        // In this app, dynamically set the picture source, Camera or photo gallery
+        sourceType: srcType,
+        encodingType: Camera.EncodingType.JPEG,
+        mediaType: Camera.MediaType.PICTURE,
+        allowEdit: true,
+        correctOrientation: true  //Corrects Android orientation quirks
+    }
+    return options;
+}
+
+function getGallery() {
+
+    var srcType = Camera.PictureSourceType.SAVEDPHOTOALBUM;
+    var options = setOptions(srcType);
+    //var func = createNewFileEntry;
+
+    navigator.camera.getPicture(function cameraSuccess(imageUri) {
+
+        console.log(imageUri);
+        //displayImage(imageUri);
+        // You may choose to copy the picture, save it somewhere, or upload.
+        //func(imageUri);
+
+    }, function cameraError(error) {
+        console.debug("Unable to obtain picture: " + error, "app");
+
+    }, options);
 }
 
 function showControls(aBool) {
