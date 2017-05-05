@@ -39,13 +39,6 @@ body {
     background: url("../img/reverse_camera_50.png") no-repeat top;
 }
 
-#gallery {
-    width: 72px;
-    height: 72px;
-    bottom: 15px;
-    background: url("../img/icon-photos-64.png") no-repeat top;
-}
-
 .face {
     position: fixed;
     left: 0px;

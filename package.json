@@ -33,8 +33,7 @@
     {
       "id": "com.ezartech.ezar.facedetector",
       "locator": "/Users/azamshahani/Desktop/ezar/plugins/com.ezartech.ezar.facedetector"
-    },
-    "cordova-plugin-camera"
+    }
   ],
   "cordovaPlatforms": []
 }
