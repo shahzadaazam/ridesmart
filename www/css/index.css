@@ -45,8 +45,7 @@ body {
     top: 0px;
     width: 1px;
     height: 1px;
-    border: 1px;
-    border-color: #ff0000;
+    border: none;
     background-image: url('../img/filters/motorcycleshades.png');
     background-repeat: no-repeat;
     background-size: 100% 100%;
