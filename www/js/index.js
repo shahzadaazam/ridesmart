@@ -31,8 +31,9 @@ function init() {
 function onFaces(faces) {
     var faceCnt, face, faceEl;
 
-    if (snapping) return;
+    //if (snapping) return;
 
+    
     if (!enableFaceUpdate || !faces || faces.length == 0) {
         faceCnt = 0;
     } else {
@@ -81,26 +82,27 @@ function snapshot() {
     
     snapping = true;
 
-    showControls(false);
-    
+    //showControls(false);
     document.getElementById('revcamera').style.display = "none";
     document.getElementById('snapshot').style.display = "none";
     document.getElementById('footerbground').style.display = "none";
     document.getElementById('gallerybutton').style.display = "none";
     document.getElementById('maskselection').style.display = "none";
+    
     setTimeout( function() {
         ezar.snapshot(
             function() {
-                showControls(true);
-                snapping = false;
+                //showControls(true);
                 document.getElementById('revcamera').style.display = "block";
                 document.getElementById('snapshot').style.display = "block";
-                document.getElementById('gallerybutton').style.display = "block";
                 document.getElementById('footerbground').style.display = "block";
+                document.getElementById('gallerybutton').style.display = "block";
                 document.getElementById('maskselection').style.display = "block";
+                snapping = false;
             },
             function(err) {
-                showControls(true);
+                console.log('snapping error');
+                //showControls(true);
                 snapping = false;
             },
 
@@ -115,10 +117,15 @@ function snapshot() {
 
 function showControls(aBool) {
     var style = aBool ? 'block' : 'none';
-    setTimeout(
-        function() {
-            document.getElementById('controls').style.display = style;  
-        }, 10);
+    //setTimeout(
+        //function() {
+            //document.getElementById('controls').style.display = style;
+           /* document.getElementById('revcamera').style.display = style;
+            document.getElementById('snapshot').style.display = style;
+            document.getElementById('gallerybutton').style.display = style;
+            document.getElementById('footerbground').style.display = style;
+            document.getElementById('maskselection').style.display = style;  */
+        //}, 10);
 }
  
 function reverseCamera() {
