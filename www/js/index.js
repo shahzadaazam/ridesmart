@@ -86,16 +86,18 @@ function snapshot() {
     document.getElementById('revcamera').style.display = "none";
     document.getElementById('snapshot').style.display = "none";
     document.getElementById('footerbground').style.display = "none";
-    document.getElementById('headerbground').style.display = "none";
-    //setTimeout( function() {
+    document.getElementById('gallerybutton').style.display = "none";
+    document.getElementById('maskselection').style.display = "none";
+    setTimeout( function() {
         ezar.snapshot(
             function() {
                 showControls(true);
                 snapping = false;
                 document.getElementById('revcamera').style.display = "block";
                 document.getElementById('snapshot').style.display = "block";
+                document.getElementById('gallerybutton').style.display = "block";
                 document.getElementById('footerbground').style.display = "block";
-                document.getElementById('headerbground').style.display = "block";
+                document.getElementById('maskselection').style.display = "block";
             },
             function(err) {
                 showControls(true);
@@ -108,7 +110,7 @@ function snapshot() {
             }
              
             );
-        //},10);
+        },10);
 }
 
 function showControls(aBool) {

@@ -21,8 +21,8 @@
     </head>
     <body>  
     <ion-pane>
-      <ion-header-bar id="headerbground" class="bar-dark ezar">     
-      </ion-header-bar>
+<!--       <ion-header-bar id="headerbground" class="bar-dark ezar">     
+      </ion-header-bar> -->
       
       <!-- abs position title above header. Allow header to be semi-transparent
            without applying to title -->
@@ -39,8 +39,18 @@
       </ion-content>
 
       <div id="footerbground" class="bar bar-dark ezar ezar-footer"></div>
-      <a id="snapshot" class="ezar-button" ng-click="snapshot()"></a>
-      <a id="revcamera" class="ezar-button" ng-click="reverseCamera()"></a> 
+        <label id="maskselection" class="item item-input item-select mask-selection-pane">
+            <div class="input-label text-white">
+            Select Mask
+            </div>
+            <select class="mask-selection-pane text-white">
+                <option selected>Ridesmart Shades</option>
+                <option>Anonymous</option>
+            </select>
+        </label>
+      <button id="snapshot" class="button button-large" ng-click="snapshot()"><i class="icon ion-camera camera-icon"></i></button>
+      <button id="revcamera" class="button" ng-click="reverseCamera()"><i class="icon ion-ios-reverse-camera reverse-camera-icon"></i></button> 
+      <button id="gallerybutton" class="button"></button> 
     </ion-pane>	
 <!--         <script type="text/javascript" src="cordova.js"></script> -->
         <script type="text/javascript" src="js/index.js"></script>
