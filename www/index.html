@@ -3,7 +3,7 @@
     <head>
         <meta http-equiv="Content-Security-Policy" content="default-src 'self' 
             data: gap: https://ssl.gstatic.com 'unsafe-eval'; 
-            style-src 'self' 'unsafe-inline'; media-src *">
+            style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: cdvphotolibrary:">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
         <link rel="stylesheet" type="text/css" href="css/index.css">
         <link href="lib/ionic/css/ionic.css" rel="stylesheet">
@@ -50,9 +50,11 @@
         </label>
       <button id="snapshot" class="button button-large" ng-click="snapshot()"><i class="icon ion-camera camera-icon"></i></button>
       <button id="revcamera" class="button" ng-click="reverseCamera()"><i class="icon ion-ios-reverse-camera reverse-camera-icon"></i></button> 
-      <button id="gallerybutton" class="button"></button> 
+      <button id="gallerybutton" class="button" ng-click="getGallery()"></button> 
     </ion-pane>	
+    <div id="gallery"></div>
 <!--         <script type="text/javascript" src="cordova.js"></script> -->
         <script type="text/javascript" src="js/index.js"></script>
+        <script src="lib/jquery/jquery-3.1.1.min.js"></script>
     </body>
 </html>

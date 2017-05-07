@@ -16,6 +16,9 @@ function init() {
     var rev = document.getElementById('revcamera');
     rev.addEventListener('click',reverseCamera,false);
 
+    var gal = document.getElementById('gallerybutton');
+    gal.addEventListener('click',getGallery,false);
+
     ezar.initializeVideoOverlay(
         function() {
             ezar.getFrontCamera().start(
@@ -76,6 +79,45 @@ function orientationChange() {
         2000);
 }
 
+
+function getGallery(){
+    var self = this;
+
+    var gallery = $('#gallery');
+
+    cordova.plugins.photoLibrary.getLibrary(
+      function (chunk) {
+        var library = chunk.library;
+        // Here we have the library as array
+
+        library.forEach(function (libraryItem) {
+
+          var image = $('<img>', {
+            src: libraryItem.thumbnailURL,
+            style: 'margin: 5px; width: 50%;'
+          });
+          image.appendTo(gallery);
+
+        });
+
+      },
+      function (err) {
+        if (err.startsWith('Permission')) {
+
+          console.log('Please provide the permission');
+
+          // TODO: explain to user why you need the permission, and continue when he agrees
+
+          self.requestAuthorization();
+
+        } else { // Real error
+          console.log('Error in getLibrary: ' + err);
+        }
+      }, {
+        chunkTimeSec: 0.3,
+      }
+    );
+}
 
 function snapshot() {
     console.log('snapshot');
