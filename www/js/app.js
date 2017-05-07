@@ -22,3 +22,14 @@ angular.module('ridesmart', ['ionic'])
     }
   });
 })
+
+.controller('MasksController', ['$scope', function($scope) {
+  
+  $scope.masks = [
+    {id: '1', name: 'Ridesmart Shades'},
+    {id: '2', name: 'Anonymous'}
+  ];
+
+  $scope.selectedMask = $scope.masks[0];
+
+}]);

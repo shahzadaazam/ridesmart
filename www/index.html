@@ -43,14 +43,14 @@
             <div class="input-label text-white">
             Select Mask
             </div>
-            <select class="mask-selection-pane text-white">
-                <option selected>Ridesmart Shades</option>
-                <option>Anonymous</option>
-            </select>
+              <div ng-controller="MasksController">
+                <select ng-options="mask.name for mask in masks" ng-model="selectedMask" class="mask-selection-pane text-white">
+                </select>
+            </div>
         </label>
       <button id="snapshot" class="button button-large" ng-click="snapshot()"><i class="icon ion-camera camera-icon"></i></button>
       <button id="revcamera" class="button" ng-click="reverseCamera()"><i class="icon ion-ios-reverse-camera reverse-camera-icon"></i></button> 
-      <button id="gallerybutton" class="button"></button> 
+      <button id="gallerybutton" class="button" ng-click="gallery()"></button> 
     </ion-pane>	
 <!--         <script type="text/javascript" src="cordova.js"></script> -->
         <script type="text/javascript" src="js/index.js"></script>
