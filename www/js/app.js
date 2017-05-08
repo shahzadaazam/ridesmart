@@ -34,9 +34,7 @@ angular.module('ridesmart', ['ionic'])
 
   $scope.selectMask = function () {
     // alert('Mask selected is ' + $scope.selectedMask.class);
-    for (var i=0; i < MAX_FACES; i++) {
-      document.getElementById("face0").className = $scope.selectedMask.class;
-    }
-  }
+    document.getElementById('face0').className = $scope.selectedMask.class;
+  }    
 
 }]);
