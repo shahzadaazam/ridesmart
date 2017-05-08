@@ -26,10 +26,17 @@ angular.module('ridesmart', ['ionic'])
 .controller('MasksController', ['$scope', function($scope) {
   
   $scope.masks = [
-    {id: '1', name: 'Ridesmart Shades'},
-    {id: '2', name: 'Anonymous'}
+    {id: '1', name: 'Ridesmart Shades', class: 'shades'},
+    {id: '2', name: 'Anonymous', class: 'anonymous'}
   ];
 
   $scope.selectedMask = $scope.masks[0];
+
+  $scope.selectMask = function () {
+    // alert('Mask selected is ' + $scope.selectedMask.class);
+    for (var i=0; i < MAX_FACES; i++) {
+      document.getElementById("face0").className = $scope.selectedMask.class;
+    }
+  }
 
 }]);

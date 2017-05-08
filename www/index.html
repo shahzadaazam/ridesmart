@@ -30,8 +30,8 @@
       
       <ion-content scroll="false">
         <div id="controls">
-            <div id="face0" class="face"></div>
-            <div id="face1" class="face"></div>
+            <div id="face0" class="shades"></div>
+            <div id="face1" class="anonymous"></div>
             <div id="face2" class="face"></div>
             <div id="face3" class="face"></div>
             <div id="face4" class="face"></div>
@@ -44,7 +44,7 @@
             Select Mask
             </div>
               <div ng-controller="MasksController">
-                <select ng-options="mask.name for mask in masks" ng-model="selectedMask" class="mask-selection-pane text-white">
+                <select ng-options="mask.name for mask in masks" ng-model="selectedMask" ng-change="selectMask()" class="mask-selection-pane text-white">
                 </select>
             </div>
         </label>
