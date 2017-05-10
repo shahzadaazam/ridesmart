@@ -86,8 +86,8 @@ function orientationChange() {
 function setOptions(srcType) {
     var options = {
         // Some common settings are 20, 50, and 100
-        quality: 50,
-        destinationType: Camera.DestinationType.FILE_URI,
+        quality: 100,
+        destinationType: Camera.DestinationType.DATA_URL,
         // In this app, dynamically set the picture source, Camera or photo gallery
         sourceType: srcType,
         encodingType: Camera.EncodingType.JPEG,
@@ -100,7 +100,7 @@ function setOptions(srcType) {
 
 function getGallery() {
 
-    var srcType = Camera.PictureSourceType.SAVEDPHOTOALBUM;
+    var srcType = Camera.PictureSourceType.PHOTOLIBRARY;
     var options = setOptions(srcType);
     //var func = createNewFileEntry;
 
