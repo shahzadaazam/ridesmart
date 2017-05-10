@@ -5,6 +5,22 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('ridesmart', ['ionic'])
 
+.config(function($stateProvider, $urlRouterProvider) {
+  $stateProvider
+  .state('home', {
+    url: '/',
+    templateUrl: 'views/home.html'
+  })
+
+  .state('gallery', {
+    url: '/gallery',
+    templateUrl: 'views/gallery.html'
+  });
+
+  $urlRouterProvider.otherwise('/');
+
+})
+
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {
