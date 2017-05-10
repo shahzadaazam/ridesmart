@@ -4,15 +4,15 @@ var faceEls = [];
 var enableFaceUpdate = false;
 var snapping = false;
 document.addEventListener('deviceready',init, false);
-        
-function init() {        
+
+function init() {
     for (var i=0; i < MAX_FACES; i++) {
         faceEls.push(document.getElementById('face'+i));
     }
 
     var snap = document.getElementById('snapshot');
-    snap.addEventListener('click',snapshot,false);  
-        
+    snap.addEventListener('click',snapshot,false);
+
     var rev = document.getElementById('revcamera');
     rev.addEventListener('click',reverseCamera,false);
 
@@ -30,7 +30,7 @@ function init() {
                     }, 1500),
                 err);
         }, err);
-    },1500);    
+    },1500);
 }
 
 
@@ -39,17 +39,17 @@ function onFaces(faces) {
 
     //if (snapping) return;
 
-    
+
     if (!enableFaceUpdate || !faces || faces.length == 0) {
         faceCnt = 0;
     } else {
         faceCnt = Math.min(faces.length,MAX_FACES);
     }
-        
+
     for (var i=0; i < faceCnt; i++) {
         face = faces[i];
         faceEl = faceEls[i];
-       
+
         faceEl.style.width = (face.right - face.left) + "px";
         faceEl.style.height = (face.bottom - face.top) + "px";
         faceEl.style.left = face.left + "px";
@@ -65,7 +65,7 @@ function onFaces(faces) {
 
 function err(msg) {
     //wrap alert in timeout to make it a macro task
-    //android: https://www.chromestatus.com/features/5647113010544640 
+    //android: https://www.chromestatus.com/features/5647113010544640
     setTimeout(
         function() {
             alert("Error: " + msg);
@@ -121,7 +121,7 @@ function getGallery() {
 
 function snapshot() {
     console.log('snapshot');
-    
+
     snapping = true;
 
     //showControls(false);
@@ -130,7 +130,7 @@ function snapshot() {
     document.getElementById('footerbground').style.display = "none";
     document.getElementById('gallerybutton').style.display = "none";
     document.getElementById('maskselection').style.display = "none";
-    
+
     setTimeout( function() {
         ezar.snapshot(
             function() {
@@ -148,11 +148,11 @@ function snapshot() {
                 snapping = false;
             },
 
-            {"saveToPhotoAlbum": true, 
+            {"saveToPhotoAlbum": true,
              "includeWebView": true,
              "includeCameraView": true
             }
-             
+
             );
         },10);
 }
@@ -169,16 +169,14 @@ function showControls(aBool) {
             document.getElementById('maskselection').style.display = style;  */
         //}, 10);
 }
- 
+
 function reverseCamera() {
     console.log('reverse camera');
     var newCamera =
-        ezar.getActiveCamera().getPosition() == 'BACK' ? 
+        ezar.getActiveCamera().getPosition() == 'BACK' ?
         ezar.getFrontCamera() : ezar.getBackCamera();
     newCamera.start();
 }
 
 
 window.addEventListener('orientationchange',orientationChange);
-
-
