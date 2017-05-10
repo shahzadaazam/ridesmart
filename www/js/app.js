@@ -22,3 +22,19 @@ angular.module('ridesmart', ['ionic'])
     }
   });
 })
+
+.controller('MasksController', ['$scope', function($scope) {
+  
+  $scope.masks = [
+    {id: '1', name: 'Ridesmart Shades', class: 'shades'},
+    {id: '2', name: 'Anonymous', class: 'anonymous'}
+  ];
+
+  $scope.selectedMask = $scope.masks[0];
+
+  $scope.selectMask = function () {
+    // alert('Mask selected is ' + $scope.selectedMask.class);
+    document.getElementById('face0').className = $scope.selectedMask.class;
+  }    
+
+}]);
