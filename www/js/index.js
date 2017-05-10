@@ -19,6 +19,7 @@ function init() {
     var gal = document.getElementById('gallerybutton');
     gal.addEventListener('click',getGallery,false);
 
+    setTimeout(function(){
     ezar.initializeVideoOverlay(
         function() {
             ezar.getFrontCamera().start(
@@ -28,8 +29,10 @@ function init() {
                         enableFaceUpdate = true;
                     }, 1500),
                 err);
-        }, err);    
+        }, err);
+    },1500);    
 }
+
 
 function onFaces(faces) {
     var faceCnt, face, faceEl;
@@ -80,43 +83,40 @@ function orientationChange() {
 }
 
 
-function getGallery(){
-    var self = this;
+function setOptions(srcType) {
+    var options = {
+        // Some common settings are 20, 50, and 100
+        quality: 50,
+        destinationType: Camera.DestinationType.FILE_URI,
+        // In this app, dynamically set the picture source, Camera or photo gallery
+        sourceType: srcType,
+        encodingType: Camera.EncodingType.JPEG,
+        mediaType: Camera.MediaType.PICTURE,
+        allowEdit: true,
+        correctOrientation: true  //Corrects Android orientation quirks
+    }
+    return options;
+}
 
-    var gallery = $('#gallery');
+function getGallery() {
 
-    cordova.plugins.photoLibrary.getLibrary(
-      function (chunk) {
-        var library = chunk.library;
-        // Here we have the library as array
+    var srcType = Camera.PictureSourceType.SAVEDPHOTOALBUM;
+    var options = setOptions(srcType);
+    //var func = createNewFileEntry;
 
-        library.forEach(function (libraryItem) {
+    navigator.camera.getPicture(function cameraSuccess(imageUri) {
 
-          var image = $('<img>', {
-            src: libraryItem.thumbnailURL,
-            style: 'margin: 5px; width: 50%;'
-          });
-          image.appendTo(gallery);
+        console.log(imageUri);
+        //var image = document.getElementById ('picture');
+        //image.src = "data:image/jpeg;base64," + imageUri;
+        //displayImage(imageUri);
+        // You may choose to copy the picture, save it somewhere, or upload.
+        //func(imageUri);
 
-        });
+    }, function cameraError(error) {
+        console.debug("Unable to obtain picture: " + error, "app");
 
-      },
-      function (err) {
-        if (err.startsWith('Permission')) {
-
-          console.log('Please provide the permission');
-
-          // TODO: explain to user why you need the permission, and continue when he agrees
-
-          self.requestAuthorization();
-
-        } else { // Real error
-          console.log('Error in getLibrary: ' + err);
-        }
-      }, {
-        chunkTimeSec: 0.3,
-      }
-    );
+    }, options);
 }
 
 function snapshot() {
