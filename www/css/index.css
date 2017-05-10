@@ -17,10 +17,10 @@ body {
 
 
 #snapshot {
-    position: absolute; 
+    position: absolute;
     z-index: 100;
     background-color: transparent;
-    border-style: 1px; 
+    border-style: 1px;
     border-color: white;
     width: 72px;
     height: 72px;
@@ -31,7 +31,7 @@ body {
 /*    background: url("../img/camera.png") no-repeat top;*/
 }
 
-/*    
+/*
 #camera:active {
     background: url("../img/camera_btn_72_04.png") no-repeat top;
 }
@@ -41,7 +41,7 @@ body {
     position: absolute;
     z-index: 100;
     background-color: transparent;
-    border-style: 1px; 
+    border-style: 1px;
     border-color: white;
     width: 50px;
     height: 50px;
@@ -54,7 +54,7 @@ body {
 #gallerybutton {
     position: absolute;
     z-index: 100;
-    border-style: none; 
+    border-style: none;
     width: 50px;
     height: 50px;
     bottom: 25px;
@@ -64,12 +64,12 @@ body {
 }
 
 #maskselection {
-    border-style: none; 
+    border-style: none;
     border-bottom-color: transparent;
 }
 
 
-.face {
+.shades {
     position: fixed;
     left: 0px;
     top: 0px;
@@ -77,6 +77,23 @@ body {
     height: 1px;
     border: none;
     background-image: url('../img/filters/motorcycleshades.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    background-position: center;
+    display: none;
+    overflow: visible;
+    transform: translate(5px,-32px) scale(1.2);
+}
+
+.anonymous {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 1px;
+    height: 1px;
+    border: none;
+    background-image: url('../img/filters/mask.png');
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-attachment: fixed;
@@ -107,7 +124,7 @@ body {
 }
 
 .ezar-button {
-   position: absolute; 
+   position: absolute;
    z-index: 100;
    background-color: transparent;
 /*   border-style: none; */
