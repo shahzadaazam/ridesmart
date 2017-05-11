@@ -1,8 +1,12 @@
-<ion-view>
+<ion-view view-title="Gallery">
   <ion-content>
-    <div id="gallery"></div>
+    <div ng-init="getPhoto()" id="gallery"></div>
     <div>
-
+      <div class="card list" ng-repeat="photo in photos">
+        <div class="item item-image">
+          <img ng-src="{{photo}}" />
+        </div>
+      </div>
     </div>
   </ion-content>
 </ion-view>

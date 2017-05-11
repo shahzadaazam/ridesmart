@@ -16,8 +16,8 @@ function init() {
     var rev = document.getElementById('revcamera');
     rev.addEventListener('click',reverseCamera,false);
 
-    var gal = document.getElementById('gallerybutton');
-    gal.addEventListener('click',getGallery,false);
+    // var gal = document.getElementById('gallerybutton');
+    // gal.addEventListener('click',getGallery,false);
 
     setTimeout(function(){
     ezar.initializeVideoOverlay(
@@ -92,7 +92,7 @@ function setOptions(srcType) {
         sourceType: srcType,
         encodingType: Camera.EncodingType.JPEG,
         mediaType: Camera.MediaType.PICTURE,
-        allowEdit: true,
+        allowEdit: false,
         correctOrientation: true  //Corrects Android orientation quirks
     }
     return options;
