@@ -3,6 +3,7 @@ var MAX_FACES = 1;
 var faceEls = [];
 var enableFaceUpdate = false;
 var snapping = false;
+var picturecount = 0;
 document.addEventListener('deviceready',init, false);
 
 function init() {
@@ -132,7 +133,7 @@ function getGallery() {
 
 function snapshot() {
     console.log('snapshot');
-
+    picturecount++;
     snapping = true;
 
     //showControls(false);
@@ -159,7 +160,8 @@ function snapshot() {
                 snapping = false;
             },
 
-            {"saveToPhotoAlbum": true,
+            {name: "1(" + picturecount + ")",
+             "saveToPhotoAlbum": true,
              "includeWebView": true,
              "includeCameraView": true
             }
