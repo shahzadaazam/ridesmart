@@ -8,13 +8,17 @@ angular.module('ridesmart', ['ionic'])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
   .state('home', {
+    cache: false,
     url: '/',
-    templateUrl: 'views/home.html'
+    templateUrl: 'views/home.html',
+    controller: 'MasksController'
   })
 
   .state('gallery', {
+    cache: false,
     url: '/gallery',
-    templateUrl: 'views/gallery.html'
+    templateUrl: 'views/gallery.html',
+    controller: 'GalleryController'
   });
 
   $urlRouterProvider.otherwise('/');
@@ -41,6 +45,10 @@ angular.module('ridesmart', ['ionic'])
 
 .controller('MasksController', ['$scope', function($scope) {
 
+  //Making ezar video overlay visible on view load
+  var x = document.getElementById("main");
+  x.style.backgroundColor = "transparent";
+
   $scope.masks = [
     {id: '1', name: 'Ridesmart Shades', class: 'shades'},
     {id: '2', name: 'Anonymous', class: 'anonymous'}
@@ -49,8 +57,20 @@ angular.module('ridesmart', ['ionic'])
   $scope.selectedMask = $scope.masks[0];
 
   $scope.selectMask = function () {
+    // var x = document.getElementById("main");
+    // x.style.backgroundColor = "transparent";
     // alert('Mask selected is ' + $scope.selectedMask.class);
     document.getElementById('face0').className = $scope.selectedMask.class;
+  }
+
+}])
+
+.controller('GalleryController', ['$scope', function($scope) {
+
+  $scope.galleryLoad = function(){
+    //Hiding ezar camera for gallery
+    var x = document.getElementById("main");
+    x.style.backgroundColor = "white";
   }
 
 }]);

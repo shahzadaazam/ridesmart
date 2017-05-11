@@ -1,7 +1,7 @@
 <ion-view hide-back-button="true" hide-nav-bar="true">
   <ion-pane>
     <ion-content scroll="false">
-      <div id="controls">
+      <div ng-controller="MasksController" id="controls">
         <div id="face0" class="shades"></div>
         <div id="face1" class="anonymous"></div>
         <div id="face2" class="face"></div>
@@ -15,13 +15,13 @@
       <div class="input-label text-white">
         Select Mask
       </div>
-      <div ng-controller="MasksController">
+      <div>
         <select ng-options="mask.name for mask in masks" ng-model="selectedMask" ng-change="selectMask()" class="mask-selection-pane text-white">
         </select>
       </div>
     </label>
     <button id="snapshot" class="button button-large" ng-click="snapshot()"><i class="icon ion-camera camera-icon"></i></button>
     <button id="revcamera" class="button" ng-click="reverseCamera()"><i class="icon ion-ios-reverse-camera reverse-camera-icon"></i></button>
-    <a href="#/gallery" id="gallerybutton" class="button" ng-click="getGallery()"></a>
+    <a ng-controller="GalleryController" href="#/gallery" ng-click="galleryLoad()" id="gallerybutton" class="button"></a>
   </ion-pane>
 </ion-view>

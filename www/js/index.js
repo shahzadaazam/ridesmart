@@ -99,6 +99,17 @@ function setOptions(srcType) {
 }
 
 function getGallery() {
+  // var currentcamera = ezar.getActiveCamera();
+  //   //Stopping ezar camera
+  //   currentcamera.stop(
+  //     function() {
+  //     //do something with snapshot image here
+  //     },
+  //   function(error) {
+  //     alert("ezar snapshot failed");
+  //   }
+  //
+  // );
 
     var srcType = Camera.PictureSourceType.SAVEDPHOTOALBUM;
     var options = setOptions(srcType);
