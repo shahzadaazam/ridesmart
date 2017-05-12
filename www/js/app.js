@@ -73,9 +73,11 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
     var x = document.getElementById("main");
     x.style.backgroundColor = "white";
 
-    for(var i = 1; i < 100; i++) {
+    for(var i = 0; i < window.localStorage.length; i++) {
+      key = window.localStorage.key(i);
+      console.log(key);
       //change the following path to pick specific images. Have to change the following to pick all images from the album
-    $scope.photos.push({id: i, src: "/storage/emulated/0/Pictures/1(" + i + ").jpg"});
+    $scope.photos.push({id: i, src: "/storage/emulated/0/Pictures/" + window.localStorage.getItem(key) + ".jpg"});
     }
   }
 
