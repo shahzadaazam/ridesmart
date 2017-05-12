@@ -119,6 +119,7 @@ function getGallery() {
     navigator.camera.getPicture(function cameraSuccess(imageUri) {
 
         console.log(imageUri);
+        $windows.localStorage["key"]=imageUri;
         //var image = document.getElementById ('picture');
         //image.src = "data:image/jpeg;base64," + imageUri;
         //displayImage(imageUri);
@@ -135,6 +136,7 @@ function snapshot() {
     console.log('snapshot');
     picturecount++;
     snapping = true;
+    var rand=Math.random().toString(36).substring(10);
 
     //showControls(false);
     document.getElementById('revcamera').style.display = "none";
@@ -142,6 +144,7 @@ function snapshot() {
     document.getElementById('footerbground').style.display = "none";
     document.getElementById('gallerybutton').style.display = "none";
     document.getElementById('maskselection').style.display = "none";
+    //window.localStorage.clear();
 
     setTimeout( function() {
         ezar.snapshot(
@@ -152,6 +155,12 @@ function snapshot() {
                 document.getElementById('footerbground').style.display = "block";
                 document.getElementById('gallerybutton').style.display = "block";
                 document.getElementById('maskselection').style.display = "block";
+
+
+                window.localStorage.setItem(rand,rand);
+                console.log('saving');
+                console.log(window.localStorage.getItem(rand));
+                console.log(window.localStorage.length);
                 snapping = false;
             },
             function(err) {
@@ -160,7 +169,7 @@ function snapshot() {
                 snapping = false;
             },
 
-            {name: "1(" + picturecount + ")",
+            {name: rand,
              "saveToPhotoAlbum": true,
              "includeWebView": true,
              "includeCameraView": true

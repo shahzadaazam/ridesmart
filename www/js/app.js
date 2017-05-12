@@ -68,7 +68,7 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
 .controller('GalleryController', function($scope, $ionicPlatform, $cordovaFile, $cordovaDevice, $ionicPopup) {
 
 
-  console.log($cordovaFile.externalDataDirectory);
+  // console.log($cordovaFile.externalDataDirectory);
 
   $scope.photos = [];
 
@@ -76,13 +76,21 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
     var x = document.getElementById("main");
     x.style.backgroundColor = "white";
 
-    var s = cordova.file.externalDataDirectory;
-    var t = s.replace("Android/data/com.ezartech.demo.ezarfacedetect/files/", "Pictures/");
-    $ionicPopup.show({title: t});
 
-    for(var i = 1; i < 100; i++) {
+    // var s = cordova.file.externalDataDirectory;
+    // var t = s.replace("Android/data/com.ezartech.demo.ezarfacedetect/files/", "Pictures/");
+    // $ionicPopup.show({title: t});
+    //
+    // for(var i = 1; i < 100; i++) {
+    //   //change the following path to pick specific images. Have to change the following to pick all images from the album
+    // $scope.photos.push({id: i, src: t + "1(" + i + ").jpg"});
+
+    for(var i = 0; i < window.localStorage.length; i++) {
+      key = window.localStorage.key(i);
+      console.log(key);
       //change the following path to pick specific images. Have to change the following to pick all images from the album
-    $scope.photos.push({id: i, src: t + "1(" + i + ").jpg"});
+    $scope.photos.push({id: i, src: "/storage/emulated/0/Pictures/" + window.localStorage.getItem(key) + ".jpg"});
+
     }
   }
 
