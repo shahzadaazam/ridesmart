@@ -145,7 +145,7 @@ function snapshot() {
 
     setTimeout( function() {
         ezar.snapshot(
-            function() {
+            function(base64EncodedImage) {
                 //showControls(true);
                 document.getElementById('revcamera').style.display = "block";
                 document.getElementById('snapshot').style.display = "block";
