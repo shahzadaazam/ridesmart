@@ -17,6 +17,7 @@ function init() {
   var rev = document.getElementById('revcamera');
   rev.addEventListener('click', reverseCamera, false);
 
+  console.log('Im in init function');
   // var gal = document.getElementById('gallerybutton');
   // gal.addEventListener('click',getGallery,false);
 
