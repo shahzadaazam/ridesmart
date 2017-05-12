@@ -48,23 +48,21 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
   //Making ezar video overlay visible on view load
   var x = document.getElementById("main");
   x.style.backgroundColor = "transparent";
+  // console.log("local storage length is:" + window.localStorage.length);
 
-  console.log("local storage length is:" + window.localStorage.length);
-
+  //Setting background image of gallery button to latest image or icon if nothing is present in the gallery
   if (window.localStorage.length > 0){
-    //Setting background image of gallery button to latest image
     var key = window.localStorage.key(window.localStorage.length - 1);
     var galleryButton = document.getElementById("gallerybutton");
     galleryButton.style.backgroundImage = 'url(/storage/emulated/0/Pictures/' + window.localStorage.getItem(key) + '.jpg)';
     galleryButton.style.border = 'none';
-    console.log(galleryButton.style.backgroundImage);
-
+    // console.log(galleryButton.style.backgroundImage);
     var galleryIcon = document.getElementById("galleryicon").className = 'none';
   }
   else{
     var galleryButton = document.getElementById("gallerybutton");
     galleryButton.style.backgroundImage = 'none';
-    console.log(galleryButton.style.backgroundImage);
+    // console.log(galleryButton.style.backgroundImage);
   }
 
   $scope.masks = [
