@@ -65,17 +65,14 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
 
 }])
 
-.controller('GalleryController', function($scope, $ionicPlatform, $cordovaFile, $cordovaDevice, $ionicPopup) {
 
-
-  // console.log($cordovaFile.externalDataDirectory);
+.controller('GalleryController', function($scope, $ionicPlatform) {
 
   $scope.photos = [];
 
   $scope.getPhoto = function(){
     var x = document.getElementById("main");
     x.style.backgroundColor = "white";
-
 
     // var s = cordova.file.externalDataDirectory;
     // var t = s.replace("Android/data/com.ezartech.demo.ezarfacedetect/files/", "Pictures/");
