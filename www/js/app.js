@@ -45,6 +45,13 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
 
 .controller('MasksController', ['$scope', function($scope, $ionicPlatform) {
 
+  //YET TO IMPLEMENT ORIENTATION CHANGE!!
+
+  //Local variables global to MasksController
+  $scope.enableFaceUpdate = false;
+  $scope.MAX_FACES = 1;
+  $scope.faceEls = [];
+
   //Making ezar video overlay visible on view load
   var x = document.getElementById("main");
   x.style.backgroundColor = "transparent";
@@ -65,18 +72,149 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
     // console.log(galleryButton.style.backgroundImage);
   }
 
+  //Loading masks to scope
   $scope.masks = [
     {id: '1', name: 'Ridesmart Shades', class: 'shades'},
     {id: '2', name: 'Anonymous', class: 'anonymous'}
   ];
 
+  //Setting first mask to load to 0
   $scope.selectedMask = $scope.masks[0];
 
+  //Running face detection, tracking and mask positioning
+  $scope.init = function(){
+    for (var i=0; i < $scope.MAX_FACES; i++) {
+      $scope.faceEls.push(document.getElementById('face'+i));
+    }
+
+    console.log('Im in init function');
+    console.log($scope.faceEls[0]);
+
+    setTimeout(function(){
+      ezar.initializeVideoOverlay(
+        function() {
+          ezar.getFrontCamera().start(
+            setTimeout(
+              function() {
+                ezar.watchFaces($scope.onFaces(),$scope.err());
+                $scope.enableFaceUpdate = true;
+              }, 1500),
+              $scope.err());
+            }, $scope.err());
+          },1500);
+  }
+
+    //Helper function to update mask placement coordinates. This is called as a success function for ezar watchFaces API call
+    $scope.onFaces = function(faces){
+      var faceCnt, face, faceEl;
+
+      if (!$scope.enableFaceUpda || !faces || faces.length == 0) {
+        faceCnt = 0;
+      } else {
+        faceCnt = Math.min(faces.length,$scope.MAX_FACES);
+      }
+
+      for (var i=0; i < faceCnt; i++) {
+        face = faces[i];
+        faceEl = $scope.faceEls[i];
+
+        faceEl.style.width = (face.right - face.left) + "px";
+        faceEl.style.height = (face.bottom - face.top) + "px";
+        faceEl.style.left = face.left + "px";
+        faceEl.style.top = face.top + "px";
+        faceEl.style.display = "block";
+      }
+
+      for (var i=faceCnt; i < $scope.MAX_FACES; i++) {
+        var faceEl = $scope.faceEls[i];
+        faceEl.style.display = "none";
+      }
+    }
+
+    //Helper function. Ths is called as a fail function for ezar watchFaces API call
+    $scope.err = function(msg){
+      //wrap alert in timeout to make it a macro task
+      //android: https://www.chromestatus.com/features/5647113010544640
+      setTimeout(
+        function() {
+          alert("Error: I'm here" + msg);
+        },0);
+    }
+
+  //Select Mask function
   $scope.selectMask = function () {
     // var x = document.getElementById("main");
     // x.style.backgroundColor = "transparent";
     // alert('Mask selected is ' + $scope.selectedMask.class);
     document.getElementById('face0').className = $scope.selectedMask.class;
+  }
+
+  //Snapshot function
+  $scope.snapshot = function(){
+
+    var snapping = false;
+    console.log('snapshot');
+    snapping = true;
+    var rand=Math.random().toString(36).substring(10);
+
+    document.getElementById('revcamera').style.display = "none";
+    document.getElementById('snapshot').style.display = "none";
+    document.getElementById('footerbground').style.display = "none";
+    document.getElementById('gallerybutton').style.display = "none";
+    document.getElementById('maskselection').style.display = "none";
+    //window.localStorage.clear();
+
+    setTimeout( function() {
+      ezar.snapshot(
+        function() {
+          document.getElementById('revcamera').style.display = "block";
+          document.getElementById('snapshot').style.display = "block";
+          document.getElementById('footerbground').style.display = "block";
+          document.getElementById('gallerybutton').style.display = "block";
+          document.getElementById('maskselection').style.display = "block";
+
+
+          window.localStorage.setItem(rand,rand);
+          console.log('saving');
+          console.log(window.localStorage.getItem(rand));
+          console.log(window.localStorage.length);
+          snapping = false;
+        },
+        function(err) {
+          console.log('snapping error');
+          snapping = false;
+        },
+
+        {name: rand,
+          "saveToPhotoAlbum": true,
+          "includeWebView": true,
+          "includeCameraView": true
+        }
+
+      );
+    },10);
+  }
+
+  //Function for orientation change
+  $scope.orientationChange = function(){
+    $scope.enableFaceUpdate = false;
+    for (var i=0; i < $scope.MAX_FACES; i++) {
+      $scope.faceEls[i].style.display = "none";
+    }
+    setTimeout(
+      function() { $scope.enableFaceUpda = true;},
+      2000);
+  }
+
+  //Reverse camera function
+  $scope.reverseCamera = function () {
+    setTimeout(function() {
+      //your code to be executed after 1/2 second
+      console.log('reverse camera');
+      console.log(ezar.getActiveCamera().getPosition());
+      var newCamera = ezar.getActiveCamera().getPosition() == 'FRONT' ? ezar.getBackCamera() : ezar.getFrontCamera();
+      newCamera.start();
+    }, 500);
   }
 
 }])
