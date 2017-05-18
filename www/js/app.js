@@ -14,6 +14,13 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
     controller: 'MasksController'
   })
 
+  .state('image', {
+    cache: false,
+    url: '/image/:index',
+    templateUrl: 'views/image.html',
+    controller: 'ImagesController'
+  })
+
   .state('gallery', {
     cache: false,
     url: '/gallery',
@@ -88,7 +95,7 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
       $scope.faceEls.push(document.getElementById('face'+i));
     }
 
-    console.log($scope.faceEls[0]);
+    // console.log($scope.faceEls[0]);
 
     console.log('initing overlay');
     setTimeout(function(){
@@ -223,7 +230,7 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
     console.log('snapshot');
     snapping = true;
     var rand=(new Date).getTime();//Math.random().toString(36).substring(10);
-    
+
     document.getElementById('revcamera').style.display = "none";
     document.getElementById('snapshot').style.display = "none";
     document.getElementById('footerbground').style.display = "none";
@@ -269,7 +276,7 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
       $scope.faceEls[i].style.display = "none";
     }
     setTimeout(
-      function() { $scope.enableFaceUpda = true;},
+      function() { $scope.enableFaceUpdate = true;},
       2000);
   }
 
@@ -287,18 +294,18 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
 }])
 
 
-.controller('GalleryController', function($scope, $ionicPlatform) {
+.controller('GalleryController', function($scope, $stateParams) {
 
   $scope.photos = [];
 
   console.log('gallery controller');
   //console.log(ezar.isVideoOverlayInitialized());
-   
-  
+
+
   $scope.getPhoto = function(){
     ezar.clearFacesWatch(
     function() {
-      console.log('faces cleared'); 
+      console.log('faces cleared');
     },
     function(error) {
       alert("clearFaces failed");
@@ -329,4 +336,20 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
 
   }
 
-});
+})
+
+.controller('ImagesController', ['$scope', function($scope, $stateParams) {
+
+  // var photo;
+  // var self = this;
+  // $scope.key = $routeParams.index;
+  // console.log("params is: " + $scope.key);
+
+  // var value = window.localStorage.key($scope.key);
+  // console.log("image value is: " + value);
+
+  $scope.photo = $stateParams.index;
+  console.log("params is: " + $stateParams.index);
+  console.log("image path is: " + $scope.photo);
+
+}]);
