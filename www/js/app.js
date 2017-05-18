@@ -89,13 +89,9 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
       $scope.faceEls.push(document.getElementById('face'+i));
     }
 
-    console.log('Im in init function');
-    //alert('in init');
     console.log($scope.faceEls[0]);
 
-    //if (window.ezar) {
-      //if($scope.vdol==false){
-        console.log('initing overlay');
+    console.log('initing overlay');
     setTimeout(function(){
       ezar.initializeVideoOverlay(
         function() {
@@ -298,15 +294,16 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
 
   console.log('gallery controller');
   //console.log(ezar.isVideoOverlayInitialized());
-  ezar.clearFacesWatch(
-  function() {
-    console.log('faces cleared'); 
-  },
-  function(error) {
-    alert("clearFaces failed");
-  }); 
+   
   
   $scope.getPhoto = function(){
+    ezar.clearFacesWatch(
+    function() {
+      console.log('faces cleared'); 
+    },
+    function(error) {
+      alert("clearFaces failed");
+    });
     var x = document.getElementById("main");
     x.style.backgroundColor = "white";
 
