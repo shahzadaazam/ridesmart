@@ -37,7 +37,6 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
       // a much nicer keyboard experience.
       cordova.plugins.Keyboard.disableScroll(true);
     }
-    else{alert('plugin NOT found');}
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
@@ -130,7 +129,7 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
                   }
                 },$scope.err());
                 $scope.enableFaceUpdate = true;
-              }, 1500),
+              }, 500),
               $scope.err1());
             }, $scope.err2());
           },1500);
@@ -223,8 +222,8 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
     var snapping = false;
     console.log('snapshot');
     snapping = true;
-    var rand=Math.random().toString(36).substring(10);
-
+    var rand=(new Date).getTime();//Math.random().toString(36).substring(10);
+    
     document.getElementById('revcamera').style.display = "none";
     document.getElementById('snapshot').style.display = "none";
     document.getElementById('footerbground').style.display = "none";
@@ -314,13 +313,18 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
     // for(var i = 1; i < 100; i++) {
     //   //change the following path to pick specific images. Have to change the following to pick all images from the album
     // $scope.photos.push({id: i, src: t + "1(" + i + ").jpg"});
-
+    var output = [];
     for(var i = 0; i < window.localStorage.length; i++) {
       var key = window.localStorage.key(i);
+      output.push(window.localStorage.key(i));
       //console.log(key);
       //change the following path to pick specific images. Have to change the following to pick all images from the album
-      $scope.photos.push({id: i, src: "/storage/emulated/0/Pictures/" + window.localStorage.getItem(key) + ".jpg"});
+      //$scope.photos.push({id: i, src: "/storage/emulated/0/Pictures/" + window.localStorage.getItem(key) + ".jpg"});
 
+    }
+    for (var j=(output.length-1);j >= 0; j--) {
+      console.log(output[j]);
+      $scope.photos.push({id: i, src: "/storage/emulated/0/Pictures/" + output[j] + ".jpg"});
     }
 
   }
