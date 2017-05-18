@@ -27,7 +27,7 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
-    if(window.cordova && window.cordova.plugins.Keyboard) {
+    if(window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -37,6 +37,7 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
       // a much nicer keyboard experience.
       cordova.plugins.Keyboard.disableScroll(true);
     }
+    else{alert('plugin NOT found');}
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
@@ -51,6 +52,7 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
   $scope.enableFaceUpdate = false;
   $scope.MAX_FACES = 1;
   $scope.faceEls = [];
+  $scope.vdol=false;
 
   //Making ezar video overlay visible on view load
   var x = document.getElementById("main");
@@ -82,54 +84,103 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
   $scope.selectedMask = $scope.masks[0];
 
   //Running face detection, tracking and mask positioning
-  $scope.init = function(){
+  //$scope.init = function(){
     for (var i=0; i < $scope.MAX_FACES; i++) {
       $scope.faceEls.push(document.getElementById('face'+i));
     }
 
     console.log('Im in init function');
+    //alert('in init');
     console.log($scope.faceEls[0]);
 
+    //if (window.ezar) {
+      //if($scope.vdol==false){
+        console.log('initing overlay');
     setTimeout(function(){
       ezar.initializeVideoOverlay(
         function() {
           ezar.getFrontCamera().start(
             setTimeout(
               function() {
-                ezar.watchFaces($scope.onFaces(),$scope.err());
+                ezar.watchFaces(function(faces){
+                  var faceCnt, face, faceEl;
+
+                  //console.log("i am success");
+                  //console.log(faces.length);
+                  if (!$scope.enableFaceUpdate || !faces || faces.length == 0) {
+                    faceCnt = 0;
+                  } else {
+                    faceCnt = Math.min(faces.length,$scope.MAX_FACES);
+                  }
+                  //faceCnt = 1;
+                  console.log('face cnt '+faceCnt)
+                  for (var i=0; i < faceCnt; i++) {
+                    face = faces[i];
+                    faceEl = $scope.faceEls[i];
+
+                    //console.log(face.right);
+                    //console.log(face.left);
+                    faceEl.style.width = (face.right - face.left) + "px";
+                    faceEl.style.height = (face.bottom - face.top) + "px";
+                    faceEl.style.left = face.left + "px";
+                    faceEl.style.top = face.top + "px";
+                    faceEl.style.display = "block";
+                  }
+                  //console.log('calling on faces');
+                  //console.log(faceEl.style.width);
+                  for (var i=faceCnt; i < $scope.MAX_FACES; i++) {
+                    var faceEl = $scope.faceEls[i];
+                    faceEl.style.display = "none";
+                  }
+                },$scope.err());
                 $scope.enableFaceUpdate = true;
               }, 1500),
-              $scope.err());
-            }, $scope.err());
+              $scope.err1());
+            }, $scope.err2());
           },1500);
-  }
+    //$scope.vdol=true;
+    //}
+    //}
+    //else{
+      //alert('in window.ezar else');
+      //alert(window.ezar);
+    //}
+    //console.log(ezar.isVideoOverlayInitialized());
+  //}
 
+  //$scope.init();
     //Helper function to update mask placement coordinates. This is called as a success function for ezar watchFaces API call
-    $scope.onFaces = function(faces){
+     /*this.onFaces = function(faces){
       var faceCnt, face, faceEl;
 
-      if (!$scope.enableFaceUpda || !faces || faces.length == 0) {
+      console.log("i am success");
+      console.log(faces.length);
+      if (!$scope.enableFaceUpdate || !faces || faces.length == 0) {
         faceCnt = 0;
       } else {
         faceCnt = Math.min(faces.length,$scope.MAX_FACES);
       }
-
+      faceCnt = 1;
+      console.log('face cnt '+faceCnt)
       for (var i=0; i < faceCnt; i++) {
         face = faces[i];
         faceEl = $scope.faceEls[i];
 
+        console.log(face.right);
+        console.log(face.left);
         faceEl.style.width = (face.right - face.left) + "px";
         faceEl.style.height = (face.bottom - face.top) + "px";
         faceEl.style.left = face.left + "px";
         faceEl.style.top = face.top + "px";
         faceEl.style.display = "block";
       }
-
+      console.log('calling on faces');
+      //console.log(faceEl.style.width);
       for (var i=faceCnt; i < $scope.MAX_FACES; i++) {
         var faceEl = $scope.faceEls[i];
         faceEl.style.display = "none";
       }
-    }
+    }*/
 
     //Helper function. Ths is called as a fail function for ezar watchFaces API call
     $scope.err = function(msg){
@@ -137,8 +188,29 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
       //android: https://www.chromestatus.com/features/5647113010544640
       setTimeout(
         function() {
-          alert("Error: I'm here" + msg);
-        },0);
+          console.log("Error: I'm here" + msg);
+          //alert("Error: I'm here" + msg);
+        },1);
+    }
+
+    $scope.err1 = function(msg){
+      //wrap alert in timeout to make it a macro task
+      //android: https://www.chromestatus.com/features/5647113010544640
+      setTimeout(
+        function() {
+          console.log("Error1: I'm here" + msg);
+          //alert("Error1: I'm here" + msg);
+        },1);
+    }
+
+    $scope.err2 = function(msg){
+      //wrap alert in timeout to make it a macro task
+      //android: https://www.chromestatus.com/features/5647113010544640
+      setTimeout(
+        function() {
+          console.log("Error2: I'm here" + msg);
+          //alert("Error2: I'm here" + msg);
+        },1);
     }
 
   //Select Mask function
@@ -224,6 +296,16 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
 
   $scope.photos = [];
 
+  console.log('gallery controller');
+  //console.log(ezar.isVideoOverlayInitialized());
+  ezar.clearFacesWatch(
+  function() {
+    console.log('faces cleared'); 
+  },
+  function(error) {
+    alert("clearFaces failed");
+  }); 
+  
   $scope.getPhoto = function(){
     var x = document.getElementById("main");
     x.style.backgroundColor = "white";
@@ -238,7 +320,7 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
 
     for(var i = 0; i < window.localStorage.length; i++) {
       var key = window.localStorage.key(i);
-      console.log(key);
+      //console.log(key);
       //change the following path to pick specific images. Have to change the following to pick all images from the album
       $scope.photos.push({id: i, src: "/storage/emulated/0/Pictures/" + window.localStorage.getItem(key) + ".jpg"});
 
