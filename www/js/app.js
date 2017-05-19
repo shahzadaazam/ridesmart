@@ -22,7 +22,7 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
   })
 
   .state('share', {
-    url: "/share",
+    url: "/share/:index",
     templateUrl: "views/share.html",
     controller: 'ShareController'
   })
@@ -307,7 +307,6 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
   console.log('gallery controller');
   //console.log(ezar.isVideoOverlayInitialized());
 
-
   $scope.getPhoto = function(){
     ezar.clearFacesWatch(
     function() {
@@ -344,20 +343,26 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
 
 })
 
-.controller('ShareController',['$scope',function($scope) {
-   $scope.whatsappShare=function(){
-    window.plugins.socialsharing.shareViaWhatsApp('Digital Signature Maker', null /* img */, "https://play.google.com/store/apps/details?id=com.prantikv.digitalsignaturemaker" /* url */, null, function(errormsg){alert("Error: Cannot Share")});
+.controller('ShareController', function($scope, $stateParams) {
+
+  console.log('share controller');
+  console.log($stateParams);
+
+  $scope.photo = $stateParams.index;
+
+  $scope.whatsappShare=function(){
+    window.plugins.socialsharing.shareViaWhatsApp('Digital Signature Maker', null /* img */, $scope.photo /* url */, null, function(errormsg){alert("Error: Cannot Share")});
   }
-   $scope.twitterShare=function(){
-    window.plugins.socialsharing.shareViaTwitter('Digital Signature Maker', null /* img */, 'https://play.google.com/store/apps/details?id=com.prantikv.digitalsignaturemaker', null, function(errormsg){alert("Error: Cannot Share")});
+  $scope.twitterShare=function(){
+    window.plugins.socialsharing.shareViaTwitter('Digital Signature Maker', null /* img */, $scope.photo, null, function(errormsg){alert("Error: Cannot Share")});
   }
-   $scope.OtherShare=function(){
-     window.plugins.socialsharing.share('Digital Signature Maker', null, null, 'https://play.google.com/store/apps/details?id=com.prantikv.digitalsignaturemaker');
+  $scope.OtherShare=function(){
+     window.plugins.socialsharing.share('Digital Signature Maker', null, null, $scope.photo);
   }
 
-}])
+})
 
-.controller('ImagesController', function($scope,$stateParams) {
+.controller('ImagesController', function($scope, $stateParams) {
 
   // var photo;
   // var self = this;

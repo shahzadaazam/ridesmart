@@ -1,12 +1,10 @@
-<ion-view>
+<ion-view hide-back-button="false" hide-nav-bar="false">
   <ion-content>
   <div>
-    <ion-item  class="item-icon-right" nav-clear menu-close href="#/share">
-		Share<i class="icon icon-right ion-chevron-right ion-accessory"></i> 
-	</ion-item>
-   </div>
-  <div>
     <img ng-src="{{photo}}" width="100%" />
-  </div>	
+  </div>
    </ion-content>
+   <a href="#/share/{{photo}}" class="button button-full button-positive icon-right ion-share share-button">
+   Share
+   </a>
 </ion-view>
