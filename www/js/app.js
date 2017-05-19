@@ -21,6 +21,12 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
     controller: 'GalleryController'
   })
 
+  .state('share', {
+    url: "/share",
+    templateUrl: "views/share.html",
+    controller: 'ShareController'
+  })
+
   .state('image', {
     cache: false,
     url: '/image/:index',
@@ -337,6 +343,19 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
   }
 
 })
+
+.controller('ShareController',['$scope',function($scope) {
+   $scope.whatsappShare=function(){
+    window.plugins.socialsharing.shareViaWhatsApp('Digital Signature Maker', null /* img */, "https://play.google.com/store/apps/details?id=com.prantikv.digitalsignaturemaker" /* url */, null, function(errormsg){alert("Error: Cannot Share")});
+  }
+   $scope.twitterShare=function(){
+    window.plugins.socialsharing.shareViaTwitter('Digital Signature Maker', null /* img */, 'https://play.google.com/store/apps/details?id=com.prantikv.digitalsignaturemaker', null, function(errormsg){alert("Error: Cannot Share")});
+  }
+   $scope.OtherShare=function(){
+     window.plugins.socialsharing.share('Digital Signature Maker', null, null, 'https://play.google.com/store/apps/details?id=com.prantikv.digitalsignaturemaker');
+  }
+
+}])
 
 .controller('ImagesController', function($scope,$stateParams) {
 
