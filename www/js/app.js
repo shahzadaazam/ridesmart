@@ -14,18 +14,18 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
     controller: 'MasksController'
   })
 
-  .state('image', {
-    cache: false,
-    url: '/image/:index',
-    templateUrl: 'views/image.html',
-    controller: 'ImagesController'
-  })
-
   .state('gallery', {
     cache: false,
     url: '/gallery',
     templateUrl: 'views/gallery.html',
     controller: 'GalleryController'
+  })
+
+  .state('image', {
+    cache: false,
+    url: '/image/:index',
+    templateUrl: 'views/image.html',
+    controller: 'ImagesController'
   });
 
   $urlRouterProvider.otherwise('/');
@@ -330,15 +330,15 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
 
     }
     for (var j=(output.length-1);j >= 0; j--) {
-      console.log(output[j]);
-      $scope.photos.push({id: i, src: "/storage/emulated/0/Pictures/" + output[j] + ".jpg"});
+      //console.log(output[j]);
+      $scope.photos.push({id: output[j], src: "/storage/emulated/0/Pictures/" + output[j] + ".jpg"});
     }
 
   }
 
 })
 
-.controller('ImagesController', ['$scope', function($scope, $stateParams) {
+.controller('ImagesController', function($scope,$stateParams) {
 
   // var photo;
   // var self = this;
@@ -347,9 +347,11 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
 
   // var value = window.localStorage.key($scope.key);
   // console.log("image value is: " + value);
-
-  $scope.photo = $stateParams.index;
+  console.log('image controller');
+  console.log($stateParams);
+  //console.log();
+  $scope.photo = "/storage/emulated/0/Pictures/"+$stateParams.index+".jpg";
   console.log("params is: " + $stateParams.index);
   console.log("image path is: " + $scope.photo);
 
-}]);
+});
