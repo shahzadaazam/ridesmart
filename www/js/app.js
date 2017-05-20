@@ -21,11 +21,11 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
     controller: 'GalleryController'
   })
 
-  .state('share', {
-    url: "/share/:index",
-    templateUrl: "views/share.html",
-    controller: 'ShareController'
-  })
+  // .state('share', {
+  //   url: "/share/:index",
+  //   templateUrl: "views/share.html",
+  //   controller: 'ShareController'
+  // })
 
   .state('image', {
     cache: false,
@@ -343,27 +343,27 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
 
 })
 
-.controller('ShareController', function($scope, $stateParams) {
+// .controller('ShareController', function($scope, $stateParams) {
+//
+//   console.log('share controller');
+//
+//   $scope.photo = { image: $stateParams.index } ;
+//   console.log('stateParams: ' + $stateParams);
+//   console.log('image path: ' + $stateParams.index);
+//
+//   // $scope.whatsappShare=function(){
+//   //   window.plugins.socialsharing.shareViaWhatsApp('Digital Signature Maker', null /* img */, $scope.photo /* url */, null, function(errormsg){alert("Error: Cannot Share")});
+//   // }
+//   // $scope.twitterShare=function(){
+//   //   window.plugins.socialsharing.shareViaTwitter('Digital Signature Maker', null /* img */, $scope.photo, null, function(errormsg){alert("Error: Cannot Share")});
+//   // }
+//   $scope.OtherShare=function(){
+//      window.plugins.socialsharing.share(null, null, "file:///storage/emulated/0/Pictures/"+$stateParams.index+".jpg");
+//   }
+//
+// })
 
-  console.log('share controller');
-
-  $scope.photo = { image: $stateParams.index } ;
-  console.log('stateParams: ' + $stateParams);
-  console.log('image path: ' + $stateParams.index);
-
-  // $scope.whatsappShare=function(){
-  //   window.plugins.socialsharing.shareViaWhatsApp('Digital Signature Maker', null /* img */, $scope.photo /* url */, null, function(errormsg){alert("Error: Cannot Share")});
-  // }
-  // $scope.twitterShare=function(){
-  //   window.plugins.socialsharing.shareViaTwitter('Digital Signature Maker', null /* img */, $scope.photo, null, function(errormsg){alert("Error: Cannot Share")});
-  // }
-  $scope.OtherShare=function(){
-     window.plugins.socialsharing.share(null, null, "file:///storage/emulated/0/Pictures/"+$stateParams.index+".jpg");
-  }
-
-})
-
-.controller('ImagesController', function($scope, $stateParams) {
+.controller('ImagesController', function($scope, $stateParams, $cordovaSocialSharing) {
 
   // var photo;
   // var self = this;
@@ -379,5 +379,11 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
   $scope.photo = "/storage/emulated/0/Pictures/"+$stateParams.index+".jpg";
   console.log("params is: " + $stateParams.index);
   console.log("image path is: " + $scope.photo);
+
+  $scope.OtherShare=function(image){
+
+    console.log("image is: " + image);
+    window.plugins.socialsharing.share(null, null, "file:///storage/emulated/0/Pictures/"+ image +".jpg");
+  }
 
 });

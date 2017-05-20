@@ -4,7 +4,7 @@
     <img ng-src="{{photo}}" width="100%" />
   </div>
    </ion-content>
-   <a href="#/share/{{picture.image}}" class="button button-full button-positive icon-right ion-share share-button">
+   <a ng-click="OtherShare(picture.image)" class="button button-full button-positive icon-right ion-share share-button">
    Share
    </a>
 </ion-view>
