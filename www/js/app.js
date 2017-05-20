@@ -62,7 +62,7 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
 
   //Local variables global to MasksController
   $scope.enableFaceUpdate = false;
-  $scope.MAX_FACES = 1;
+  $scope.MAX_FACES = 5;
   $scope.faceEls = [];
   $scope.vdol=false;
 
@@ -115,12 +115,25 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
 
                   //console.log("i am success");
                   //console.log(faces.length);
+
+                   window.addEventListener("orientationchange", function(){
+                    console.log(window.orientation);
+                    console.log(screen.orientation.type);
+                    screen.orientation.lock('portrait');
+                    $scope.enableFaceUpdate = false;
+                    for (var i=0; i < $scope.MAX_FACES; i++) {
+                      $scope.faceEls[i].style.display = "none";
+                    }
+                    setTimeout(
+                      function() { $scope.enableFaceUpdate = true;},
+                      2000);
+                  }, false); 
+                  //console.log(faces.length);
                   if (!$scope.enableFaceUpdate || !faces || faces.length == 0) {
                     faceCnt = 0;
                   } else {
                     faceCnt = Math.min(faces.length,$scope.MAX_FACES);
                   }
-                  //faceCnt = 1;
                   console.log('face cnt '+faceCnt)
                   for (var i=0; i < faceCnt; i++) {
                     face = faces[i];
