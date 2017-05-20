@@ -346,18 +346,19 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
 .controller('ShareController', function($scope, $stateParams) {
 
   console.log('share controller');
-  console.log($stateParams);
 
-  $scope.photo = $stateParams.index;
+  $scope.photo = { image: $stateParams.index } ;
+  console.log('stateParams: ' + $stateParams);
+  console.log('image path: ' + $stateParams.index);
 
-  $scope.whatsappShare=function(){
-    window.plugins.socialsharing.shareViaWhatsApp('Digital Signature Maker', null /* img */, $scope.photo /* url */, null, function(errormsg){alert("Error: Cannot Share")});
-  }
-  $scope.twitterShare=function(){
-    window.plugins.socialsharing.shareViaTwitter('Digital Signature Maker', null /* img */, $scope.photo, null, function(errormsg){alert("Error: Cannot Share")});
-  }
+  // $scope.whatsappShare=function(){
+  //   window.plugins.socialsharing.shareViaWhatsApp('Digital Signature Maker', null /* img */, $scope.photo /* url */, null, function(errormsg){alert("Error: Cannot Share")});
+  // }
+  // $scope.twitterShare=function(){
+  //   window.plugins.socialsharing.shareViaTwitter('Digital Signature Maker', null /* img */, $scope.photo, null, function(errormsg){alert("Error: Cannot Share")});
+  // }
   $scope.OtherShare=function(){
-     window.plugins.socialsharing.share('Digital Signature Maker', null, null, $scope.photo);
+     window.plugins.socialsharing.share(null, null, "file:///storage/emulated/0/Pictures/"+$stateParams.index+".jpg");
   }
 
 })
@@ -374,6 +375,7 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
   console.log('image controller');
   console.log($stateParams);
   //console.log();
+  $scope.picture = { image: $stateParams.index } ;
   $scope.photo = "/storage/emulated/0/Pictures/"+$stateParams.index+".jpg";
   console.log("params is: " + $stateParams.index);
   console.log("image path is: " + $scope.photo);
