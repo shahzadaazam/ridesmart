@@ -376,27 +376,22 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
 //
 // })
 
-.controller('ImagesController', function($scope, $stateParams, $cordovaSocialSharing) {
+.controller('ImagesController', function($scope, $stateParams, $cordovaSocialSharing, $location) {
 
-  // var photo;
-  // var self = this;
-  // $scope.key = $routeParams.index;
-  // console.log("params is: " + $scope.key);
-
-  // var value = window.localStorage.key($scope.key);
-  // console.log("image value is: " + value);
   console.log('image controller');
   console.log($stateParams);
-  //console.log();
   $scope.picture = { image: $stateParams.index } ;
   $scope.photo = "/storage/emulated/0/Pictures/"+$stateParams.index+".jpg";
   console.log("params is: " + $stateParams.index);
   console.log("image path is: " + $scope.photo);
 
   $scope.OtherShare=function(image){
-
     console.log("image is: " + image);
     window.plugins.socialsharing.share(null, null, "file:///storage/emulated/0/Pictures/"+ image +".jpg");
   }
 
+  $scope.DeleteImage=function(image){
+    window.localStorage.removeItem(image);
+    $location.path('/gallery');
+  }  
 });

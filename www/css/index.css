@@ -164,3 +164,9 @@ body {
   width: 100%;
   bottom: 0%;
 }
+
+.delete-button {
+  position: fixed !important;
+  width: 100%;
+  bottom: 10%;
+}
