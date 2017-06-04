@@ -127,7 +127,7 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
                     setTimeout(
                       function() { $scope.enableFaceUpdate = true;},
                       2000);
-                  }, false); 
+                  }, false);
                   //console.log(faces.length);
                   if (!$scope.enableFaceUpdate || !faces || faces.length == 0) {
                     faceCnt = 0;
@@ -393,5 +393,5 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
   $scope.DeleteImage=function(image){
     window.localStorage.removeItem(image);
     $location.path('/gallery');
-  }  
+  }
 });

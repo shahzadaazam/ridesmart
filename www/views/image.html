@@ -4,10 +4,6 @@
     <img ng-src="{{photo}}" width="100%" />
   </div>
    </ion-content>
-   <a ng-click="OtherShare(picture.image)" class="button button-full button-positive icon-right ion-share share-button">
-   Share
-   </a>
-   <a ng-click="DeleteImage(picture.image)" class="button button-full button-positive icon-right ion-trash-b delete-button">
-   Delete
-   </a>
+   <button ng-click="OtherShare(picture.image)" class="button button-large share-button"><i class="icon ion-share camera-icon"></i></button>
+   <button ng-click="DeleteImage(picture.image)" class="button button-large delete-button"><i class="icon ion-trash-b camera-icon"></i></button>
 </ion-view>

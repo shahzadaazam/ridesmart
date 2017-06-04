@@ -48,4 +48,7 @@
   <allow-navigation href="http://192.168.0.9:8101"/>
   <allow-navigation href="http://192.168.0.5:8101"/>
   <allow-navigation href="http://192.168.0.7:8100"/>
+  <allow-navigation href="http://10.224.16.168:8100"/>
+  <allow-navigation href="http://10.224.16.168:8101"/>
+  <allow-navigation href="http://192.168.0.7:8101"/>
 </widget>
