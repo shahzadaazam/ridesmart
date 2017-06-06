@@ -240,13 +240,16 @@ angular.module('ridesmart', ['ionic', 'ngCordova', 'ionic.contrib.ui.hscrollcard
     }
 
   //Select Mask function
-  $scope.selectMask = function () {
+  $scope.selectMask = function (maskid) {
     // var x = document.getElementById("main");
     // x.style.backgroundColor = "transparent";
     // alert('Mask selected is ' + $scope.selectedMask.class);
     console.log('select mask button pressed');
     console.log('selected mask is: ' + $scope.selectedMask.class);
+    console.log('maskid passed is: ' + maskid);
+    $scope.selectedMask = $scope.masks[maskid];
     document.getElementById('face0').className = $scope.selectedMask.class;
+    console.log('selected mask is: ' + $scope.selectedMask.class);
   }
 
   //Snapshot function
@@ -261,7 +264,8 @@ angular.module('ridesmart', ['ionic', 'ngCordova', 'ionic.contrib.ui.hscrollcard
     document.getElementById('snapshot').style.display = "none";
     document.getElementById('footerbground').style.display = "none";
     document.getElementById('gallerybutton').style.display = "none";
-    document.getElementById('maskselection').style.display = "none";
+    // document.getElementById('maskselection').style.display = "none";
+    document.getElementById('scroller').style.display = "none";
     //window.localStorage.clear();
 
     setTimeout( function() {
@@ -271,7 +275,8 @@ angular.module('ridesmart', ['ionic', 'ngCordova', 'ionic.contrib.ui.hscrollcard
           document.getElementById('snapshot').style.display = "block";
           document.getElementById('footerbground').style.display = "block";
           document.getElementById('gallerybutton').style.display = "block";
-          document.getElementById('maskselection').style.display = "block";
+          // document.getElementById('maskselection').style.display = "block";
+          document.getElementById('scroller').style.display = "block";
 
 
           window.localStorage.setItem(rand,rand);
