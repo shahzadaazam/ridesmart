@@ -203,3 +203,43 @@ body {
 .black {
   background-color: black !important;
 }
+
+
+.scroller {
+  position: relative;
+  top: 7%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  border-style: none !important;
+}
+
+.scroller-card {
+  background-color: transparent !important;
+  width: 70px !important;
+  height: 70px !important;
+  border-style: solid !important;
+  border-width: 3px !important;
+  border-radius: 50% !important;
+  border-color: white !important;
+  text-align: center;
+}
+
+.scroller-card img{
+  margin-top: 5%;
+  background-color: transparent !important;
+  width: 60px !important;
+  height: 60px !important;
+  border-style: none !important;
+  /*position: relative;
+  top: 50%;
+  transform: translateY(-50%);*/
+}
+
+.mask-card {
+  position: absolute;
+  background-color: transparent !important;
+  border-style: none !important;
+  width: 60px !important;
+  height: 60px !important;
+}

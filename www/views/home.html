@@ -12,7 +12,7 @@
     </ion-content>
 
     <div id="footerbground"></div>
-    <label id="maskselection" class="item item-input item-select mask-selection-pane">
+    <!-- <label id="maskselection" class="item item-input item-select mask-selection-pane">
       <div class="input-label text-white">
         Select Mask
       </div>
@@ -20,7 +20,10 @@
         <select ng-options="mask.name for mask in masks" ng-model="selectedMask" ng-change="selectMask()" class="mask-selection-pane text-white">
         </select>
       </div>
-    </label>
+    </label> -->
+    <hscroller class="scroller">
+      <hcard class="scroller-card" ng-repeat="mask in masks" index="{{mask.id}}" desc="" image="img/filters/{{mask.image}}"><button class="mask-card"></button></hcard>
+    </hscroller>
     <button id="snapshot" class="button button-large" ng-click="snapshot()"><i class="icon ion-camera camera-icon"></i></button>
     <button id="revcamera" class="button" ng-click="reverseCamera()"><i class="icon ion-ios-reverse-camera reverse-camera-icon"></i></button>
     <a href="#/gallery" id="gallerybutton" class="button"><i id="galleryicon" class="icon ion-images gallery-icon"></i></a>

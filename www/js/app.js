@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('ridesmart', ['ionic', 'ngCordova'])
+angular.module('ridesmart', ['ionic', 'ngCordova', 'ionic.contrib.ui.hscrollcards'])
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
@@ -88,8 +88,13 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
 
   //Loading masks to scope
   $scope.masks = [
-    {id: '1', name: 'Ridesmart Shades', class: 'shades'},
-    {id: '2', name: 'Anonymous', class: 'anonymous'}
+    {id: '1', name: 'Ridesmart Shades', class: 'shades', image: 'motorcycleshades.png'},
+    {id: '2', name: 'Anonymous', class: 'anonymous', image: 'mask.png'},
+    {id: '3', name: 'Mask3', class: 'anonymous', image: 'mask.png'},
+    {id: '4', name: 'Mask4', class: 'anonymous', image: 'mask.png'},
+    {id: '5', name: 'Mask5', class: 'anonymous', image: 'mask.png'},
+    {id: '6', name: 'Mask6', class: 'anonymous', image: 'mask.png'},
+    {id: '7', name: 'Mask7', class: 'anonymous', image: 'mask.png'}
   ];
 
   //Setting first mask to load to 0
@@ -239,6 +244,8 @@ angular.module('ridesmart', ['ionic', 'ngCordova'])
     // var x = document.getElementById("main");
     // x.style.backgroundColor = "transparent";
     // alert('Mask selected is ' + $scope.selectedMask.class);
+    console.log('select mask button pressed');
+    console.log('selected mask is: ' + $scope.selectedMask.class);
     document.getElementById('face0').className = $scope.selectedMask.class;
   }
 
