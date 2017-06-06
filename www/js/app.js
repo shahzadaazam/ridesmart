@@ -88,13 +88,13 @@ angular.module('ridesmart', ['ionic', 'ngCordova', 'ionic.contrib.ui.hscrollcard
 
   //Loading masks to scope
   $scope.masks = [
-    {id: '1', name: 'Ridesmart Shades', class: 'shades', image: 'motorcycleshades.png'},
-    {id: '2', name: 'Anonymous', class: 'anonymous', image: 'mask.png'},
-    {id: '3', name: 'Mask3', class: 'anonymous', image: 'mask.png'},
-    {id: '4', name: 'Mask4', class: 'anonymous', image: 'mask.png'},
-    {id: '5', name: 'Mask5', class: 'anonymous', image: 'mask.png'},
-    {id: '6', name: 'Mask6', class: 'anonymous', image: 'mask.png'},
-    {id: '7', name: 'Mask7', class: 'anonymous', image: 'mask.png'}
+    {id: '0', name: 'Ridesmart Shades', class: 'shades', image: 'motorcycleshades.png'},
+    {id: '1', name: 'Anonymous', class: 'anonymous', image: 'mask.png'},
+    {id: '2', name: 'Mask3', class: 'anonymous', image: 'mask.png'},
+    {id: '3', name: 'Mask4', class: 'anonymous', image: 'mask.png'},
+    {id: '4', name: 'Mask5', class: 'anonymous', image: 'mask.png'},
+    {id: '5', name: 'Mask6', class: 'anonymous', image: 'mask.png'},
+    {id: '6', name: 'Mask7', class: 'anonymous', image: 'mask.png'}
   ];
 
   //Setting first mask to load to 0
