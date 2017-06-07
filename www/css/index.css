@@ -225,6 +225,10 @@ body {
   text-align: center;
 }
 
+.scroller-card:active {
+  border-color: green !important;
+}
+
 .scroller-card img{
   margin-top: 5%;
   background-color: transparent !important;
