@@ -38,7 +38,8 @@
     "cordova-plugin-photo-library",
     "cordova-plugin-statusbar",
     "cordova-plugin-camera",
-    "cordova-plugin-screen-orientation"
+    "cordova-plugin-screen-orientation",
+    "cordova-plugin-photo-library@~2.0.4"
   ],
   "cordovaPlatforms": []
 }
