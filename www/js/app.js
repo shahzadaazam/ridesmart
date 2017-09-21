@@ -88,13 +88,22 @@ angular.module('ridesmart', ['ionic', 'ngCordova', 'ionic.contrib.ui.hscrollcard
 
   //Loading masks to scope
   $scope.masks = [
-    {id: '0', name: 'Ridesmart Shades', class: 'shades', image: 'motorcycleshades.png'},
-    {id: '1', name: 'Anonymous', class: 'anonymous', image: 'mask.png'},
-    {id: '2', name: 'Mask3', class: 'anonymous', image: 'mask.png'},
-    {id: '3', name: 'Mask4', class: 'anonymous', image: 'mask.png'},
-    {id: '4', name: 'Mask5', class: 'anonymous', image: 'mask.png'},
-    {id: '5', name: 'Mask6', class: 'anonymous', image: 'mask.png'},
-    {id: '6', name: 'Mask7', class: 'anonymous', image: 'mask.png'}
+    {id: '0', name: 'Blue Helmet', class: 'helmetblue', image: 'bluehelmet.png'},
+    {id: '1', name: 'Green Helmet', class: 'helmetgreen', image: 'greenhelmet.png'},
+    {id: '2', name: 'Yellow Helmet', class: 'helmetyellow', image: 'yellowhelmet.png'},
+    {id: '3', name: 'Red Helmet', class: 'helmetred', image: 'redhelmet.png'},
+    {id: '4', name: 'Green Helmet 2', class: 'helmetgreen2', image: 'greenhelmet2.png'},
+    {id: '5', name: 'Pink Helmet', class: 'helmetpink', image: 'pinkhelmet.png'},
+    {id: '6', name: 'Purple Helmet', class: 'helmetpurple', image: 'purplehelmet.png'},
+    {id: '7', name: 'Red Helmet 2', class: 'helmetred2', image: 'redhelmet2.png'},
+    {id: '8', name: 'Cruiser', class: 'cruiser', image: 'cruiser.png'},
+    {id: '9', name: 'Red Cruiser', class: 'redcruiser', image: 'redcruiser.png'},
+    {id: '10', name: 'Scooter', class: 'scooter', image: 'scooter.png'},
+    {id: '11', name: 'Red Scooter', class: 'redscooter', image: 'redscooter.png'},
+    {id: '12', name: 'Sportbike', class: 'sportbike', image: 'sportbike.png'},
+    {id: '13', name: 'Red Sportbike', class: 'redsportbike', image: 'redsportbike.png'},
+    {id: '14', name: 'Touring Bike', class: 'touringbike', image: 'touringbike.png'},
+    {id: '15', name: 'Red Touring Bike', class: 'redtouringbike', image: 'redtouringbike.png'}
   ];
 
   //Setting first mask to load to 0
