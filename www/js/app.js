@@ -1,8 +1,4 @@
-// Ionic Starter App
 
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
 angular.module('ridesmart', ['ionic', 'ngCordova', 'ionic.contrib.ui.hscrollcards'])
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -20,12 +16,6 @@ angular.module('ridesmart', ['ionic', 'ngCordova', 'ionic.contrib.ui.hscrollcard
     templateUrl: 'views/gallery.html',
     controller: 'GalleryController'
   })
-
-  // .state('share', {
-  //   url: "/share/:index",
-  //   templateUrl: "views/share.html",
-  //   controller: 'ShareController'
-  // })
 
   .state('image', {
     cache: false,
@@ -173,49 +163,8 @@ angular.module('ridesmart', ['ionic', 'ngCordova', 'ionic.contrib.ui.hscrollcard
               $scope.err1());
             }, $scope.err2());
           },1500);
-    //$scope.vdol=true;
-    //}
-    //}
-    //else{
-      //alert('in window.ezar else');
-      //alert(window.ezar);
-    //}
-    //console.log(ezar.isVideoOverlayInitialized());
-  //}
 
-  //$scope.init();
     //Helper function to update mask placement coordinates. This is called as a success function for ezar watchFaces API call
-     /*this.onFaces = function(faces){
-      var faceCnt, face, faceEl;
-
-      console.log("i am success");
-      console.log(faces.length);
-      if (!$scope.enableFaceUpdate || !faces || faces.length == 0) {
-        faceCnt = 0;
-      } else {
-        faceCnt = Math.min(faces.length,$scope.MAX_FACES);
-      }
-      faceCnt = 1;
-      console.log('face cnt '+faceCnt)
-      for (var i=0; i < faceCnt; i++) {
-        face = faces[i];
-        faceEl = $scope.faceEls[i];
-
-        console.log(face.right);
-        console.log(face.left);
-        faceEl.style.width = (face.right - face.left) + "px";
-        faceEl.style.height = (face.bottom - face.top) + "px";
-        faceEl.style.left = face.left + "px";
-        faceEl.style.top = face.top + "px";
-        faceEl.style.display = "block";
-      }
-      console.log('calling on faces');
-      //console.log(faceEl.style.width);
-      for (var i=faceCnt; i < $scope.MAX_FACES; i++) {
-        var faceEl = $scope.faceEls[i];
-        faceEl.style.display = "none";
-      }
-    }*/
 
     //Helper function. Ths is called as a fail function for ezar watchFaces API call
     $scope.err = function(msg){
@@ -377,25 +326,6 @@ angular.module('ridesmart', ['ionic', 'ngCordova', 'ionic.contrib.ui.hscrollcard
 
 })
 
-// .controller('ShareController', function($scope, $stateParams) {
-//
-//   console.log('share controller');
-//
-//   $scope.photo = { image: $stateParams.index } ;
-//   console.log('stateParams: ' + $stateParams);
-//   console.log('image path: ' + $stateParams.index);
-//
-//   // $scope.whatsappShare=function(){
-//   //   window.plugins.socialsharing.shareViaWhatsApp('Digital Signature Maker', null /* img */, $scope.photo /* url */, null, function(errormsg){alert("Error: Cannot Share")});
-//   // }
-//   // $scope.twitterShare=function(){
-//   //   window.plugins.socialsharing.shareViaTwitter('Digital Signature Maker', null /* img */, $scope.photo, null, function(errormsg){alert("Error: Cannot Share")});
-//   // }
-//   $scope.OtherShare=function(){
-//      window.plugins.socialsharing.share(null, null, "file:///storage/emulated/0/Pictures/"+$stateParams.index+".jpg");
-//   }
-//
-// })
 
 .controller('ImagesController', function($scope, $stateParams, $cordovaSocialSharing, $location) {
 

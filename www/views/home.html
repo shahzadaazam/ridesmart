@@ -1,7 +1,6 @@
 <ion-view hide-back-button="true" hide-nav-bar="true">
   <ion-pane>
     <ion-content scroll="false">
-      <!--<div ng-init="init()" ng-controller="MasksController" id="controls">-->
       <div id="controls">
         <div id="face0" class="helmetblue"></div>
         <div id="face1" class="helmetblue"></div>
@@ -12,15 +11,6 @@
     </ion-content>
 
     <div id="footerbground"></div>
-    <!-- <label id="maskselection" class="item item-input item-select mask-selection-pane">
-      <div class="input-label text-white">
-        Select Mask
-      </div>
-      <div>
-        <select ng-options="mask.name for mask in masks" ng-model="selectedMask" ng-change="selectMask()" class="mask-selection-pane text-white">
-        </select>
-      </div>
-    </label> -->
     <hscroller id="scroller" class="scroller">
       <hcard class="scroller-card" ng-model="selectedMask" ng-click="selectMask({{mask.id}})" ng-repeat="mask in masks" index="{{mask.id}}" desc="" image="img/filters/{{mask.image}}"></hcard>
     </hscroller>
